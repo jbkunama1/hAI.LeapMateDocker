@@ -1,0 +1,37 @@
+# ============================================================
+# Portainer Stack: LeapMotor-Mate
+# Deploy via: Portainer > Stacks > Add Stack > Repository
+# Repo URL: https://github.com/jbkunama1/hAI.LeapMateDocker
+# Compose path: docker-compose.portainer.yml
+# ============================================================
+
+services:
+  leapmotor-mate:
+    build:
+      context: https://github.com/ProtossBlaster/leapmotor-mate.git
+      dockerfile: Dockerfile
+      args:
+        BUILD_FROM: python:3.12-slim
+    image: leapmotor-mate:latest
+    container_name: leapmotor-mate
+    ports:
+      - "${PORT:-4000}:4000"
+    volumes:
+      - leapmotor_data:/data
+    environment:
+      - LEAPMOTOR_USER=${LEAPMOTOR_USER}
+      - LEAPMOTOR_PASS=${LEAPMOTOR_PASS}
+      - LEAPMOTOR_PIN=${LEAPMOTOR_PIN}
+      - DB_PATH=${DB_PATH:-/data/leapmotor_mate.db}
+      - TZ=${TZ:-Europe/Berlin}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:4000/healthz', timeout=8)"]
+      interval: 60s
+      timeout: 10s
+      start_period: 60s
+      retries: 3
+
+volumes:
+  leapmotor_data:
+    driver: local

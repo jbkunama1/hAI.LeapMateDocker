@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>hAI.LeapMateDocker</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card: #161b22;
+      --border: #30363d;
+      --accent: #238636;
+      --accent-hover: #2ea043;
+      --text: #c9d1d9;
+      --muted: #8b949e;
+      --link: #58a6ff;
+      --badge-bg: #21262d;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+    header { text-align: center; margin-bottom: 2rem; }
+    header h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; }
+    header h1 span { color: var(--link); }
+    header p { color: var(--muted); margin-top: .5rem; font-size: 1rem; }
+    .badges { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin: 1rem 0 2rem; }
+    .badges img { height: 20px; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; width: 100%; max-width: 900px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem 1.5rem; }
+    .card h2 { font-size: 1rem; font-weight: 600; margin-bottom: .75rem; display: flex; align-items: center; gap: .5rem; }
+    .card p, .card li { font-size: .9rem; color: var(--muted); line-height: 1.6; }
+    .card ol, .card ul { padding-left: 1.2rem; }
+    .card li { margin-bottom: .3rem; }
+    .card code { background: var(--badge-bg); border-radius: 4px; padding: 1px 5px; font-family: monospace; font-size: .85rem; color: var(--link); }
+    .btn { display: inline-block; margin-top: 1rem; padding: .5rem 1rem; background: var(--accent); color: #fff; border-radius: 6px; text-decoration: none; font-size: .9rem; font-weight: 600; transition: background .15s; }
+    .btn:hover { background: var(--accent-hover); }
+    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--link); margin-left: .5rem; }
+    .btn-outline:hover { background: var(--badge-bg); }
+    footer { margin-top: 3rem; color: var(--muted); font-size: .8rem; text-align: center; }
+    footer a { color: var(--link); text-decoration: none; }
+  </style>
+</head>
+<body>
+<header>
+  <h1>hAI.<span>LeapMateDocker</span></h1>
+  <p>Portainer Stack &bull; Deploy direkt aus GitHub &bull; LeapMotor-Mate</p>
+</header>
+<div class="badges">
+  <img src="https://img.shields.io/github/stars/jbkunama1/hAI.LeapMateDocker?style=flat-square&logo=github" alt="Stars" />
+  <img src="https://img.shields.io/github/forks/jbkunama1/hAI.LeapMateDocker?style=flat-square&logo=github" alt="Forks" />
+  <img src="https://img.shields.io/badge/Docker-ready-2496ED?style=flat-square&logo=docker" alt="Docker" />
+  <img src="https://img.shields.io/badge/Portainer-Stack-13BEF9?style=flat-square&logo=portainer" alt="Portainer" />
+  <img src="https://img.shields.io/badge/License-GPL--3.0-blue.svg?style=flat-square" alt="License" />
+  <img src="https://img.shields.io/badge/Upstream-ProtossBlaster%2Fleapmotor--mate-orange?style=flat-square&logo=github" alt="Upstream" />
+</div>
+<div class="card-grid">
+  <div class="card">
+    <h2><span>🚀</span> Portainer Deploy</h2>
+    <ol>
+      <li>Portainer &rarr; <strong>Stacks</strong> &rarr; <strong>+ Add stack</strong></li>
+      <li>Build method: <code>Repository</code></li>
+      <li>URL: <code>https://github.com/jbkunama1/hAI.LeapMateDocker</code></li>
+      <li>Reference: <code>refs/heads/main</code></li>
+      <li>Compose path: <code>docker-compose.portainer.yml</code></li>
+      <li>Env vars setzen &rarr; <strong>Deploy</strong></li>
+    </ol>
+    <a class="btn" href="https://github.com/jbkunama1/hAI.LeapMateDocker" target="_blank">Zum Repo</a>
+    <a class="btn btn-outline" href="https://github.com/jbkunama1/hAI.LeapMateDocker/blob/main/docker-compose.portainer.yml" target="_blank">Stack YAML</a>
+  </div>
+  <div class="card">
+    <h2><span>🔧</span> Environment Variables</h2>
+    <ul>
+      <li><code>LEAPMOTOR_USER</code> &ndash; App E-Mail</li>
+      <li><code>LEAPMOTOR_PASS</code> &ndash; App Passwort</li>
+      <li><code>LEAPMOTOR_PIN</code> &ndash; 4-stellige PIN</li>
+      <li><code>DB_PATH</code> &ndash; <code>/data/leapmotor_mate.db</code></li>
+      <li><code>TZ</code> &ndash; z.B. <code>Europe/Berlin</code></li>
+      <li><code>PORT</code> &ndash; default <code>4000</code></li>
+    </ul>
+    <a class="btn btn-outline" href="https://github.com/jbkunama1/hAI.LeapMateDocker/blob/main/.env.example" target="_blank">.env.example</a>
+  </div>
+  <div class="card">
+    <h2><span>ℹ️</span> Was ist LeapMotor-Mate?</h2>
+    <p>Self-hosted Web-Dashboard für Leap-Motor-Fahrzeuge. Pollt Fahrzeugdaten, speichert sie in SQLite und stellt sie über ein Web-UI bereit. Dieses Repo liefert den fertigen Docker-Stack für Portainer – kein manuelles Clonen nötig.</p>
+    <a class="btn btn-outline" href="https://github.com/ProtossBlaster/leapmotor-mate" target="_blank">Upstream ↗</a>
+  </div>
+  <div class="card">
+    <h2><span>🗄️</span> Volumes &amp; Ports</h2>
+    <ul>
+      <li>Named Volume: <code>leapmotor_data</code> &rarr; <code>/data</code></li>
+      <li>Web-UI: Port <code>4000</code> (konfigurierbar)</li>
+      <li>Healthcheck: <code>/healthz</code> alle 60s</li>
+      <li>Restart: <code>unless-stopped</code></li>
+    </ul>
+  </div>
+</div>
+<footer>
+  <p>Made with ❤️ by <a href="https://github.com/jbkunama1">jbkunama1</a> &bull;
+  Upstream: <a href="https://github.com/ProtossBlaster/leapmotor-mate">ProtossBlaster/leapmotor-mate</a> &bull;
+  <a href="https://github.com/jbkunama1/hAI.LeapMateDocker">GitHub Repo</a></p>
+</footer>
+</body>
+</html>
