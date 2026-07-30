@@ -13,11 +13,12 @@ services:
       args:
         BUILD_FROM: python:3.12-slim
     image: leapmotor-mate:latest
-    container_name: leapmotor-mate
+    container_name: hai-leapmotor-mate
     ports:
       - "${PORT:-4000}:4000"
     volumes:
       - leapmotor_data:/data
+      
     environment:
       - LEAPMOTOR_USER=${LEAPMOTOR_USER}
       - LEAPMOTOR_PASS=${LEAPMOTOR_PASS}
@@ -31,7 +32,14 @@ services:
       timeout: 10s
       start_period: 60s
       retries: 3
+      
+    networks:
+      - highfishNetwork
 
 volumes:
   leapmotor_data:
     driver: local
+    
+networks:
+  highfishNetwork:
+    external: true
