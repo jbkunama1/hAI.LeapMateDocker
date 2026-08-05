@@ -44,7 +44,7 @@ Dieses Repo liefert einen fertigen **Portainer Stack** (Git-Deployment) für bei
 
 ## 📦 Portainer Deploy – GHCR-Image (vorgebaut)
 
-Das Image wird von GitHub Actions gebaut (`.github/workflows/docker-build.yml`) und auf `ghcr.io/jbkunama1/hai.leapmatedocker` gepusht – bei jedem Push auf `main` (multi-arch `linux/amd64` + `linux/arm64`).
+Das Image wird von GitHub Actions gebaut (`.github/workflows/docker-build.yml`, bei jedem Push/Commit) und auf `ghcr.io/jbkunama1/hai.leapmatedocker` gepusht; ein täglicher Upstream-Check (`docker-build-daily.yml`) baut bei neuen Commits automatisch nach (multi-arch `linux/amd64` + `linux/arm64`).
 
 ### Voraussetzungen
 - Portainer Business oder CE ≥ 2.x
@@ -86,7 +86,8 @@ hAI.LeapMateDocker/
 ├── docker-compose.ghcr.yml       ← Portainer Stack (holt vorgebautes GHCR-Image)
 ├── .env.example                  ← Vorlage für Umgebungsvariablen
 ├── .github/workflows/
-│   ├── docker-build.yml          ← baut & pusht Image auf ghcr.io (bei Push auf main)
+│   ├── docker-build.yml          ← baut & pusht Image auf ghcr.io (bei Push/Commit)
+│   ├── docker-build-daily.yml    ← täglicher Upstream-Check; baut neu bei neuem Upstream-Commit
 │   └── trufflehog.yml            ← täglicher Secret-Scan
 ├── docs/
 │   └── index.html                ← GitHub Pages Landingpage
@@ -99,6 +100,8 @@ hAI.LeapMateDocker/
 
 Dieses Repo deployt direkt den Quellcode von [ProtossBlaster/leapmotor-mate](https://github.com/ProtossBlaster/leapmotor-mate).
 Das Image wird beim ersten Deploy vom Docker-Host gebaut (kein vorgefertigtes Image nötig) – oder alternativ automatisch vom GHCR-Workflow gebaut und auf `ghcr.io/jbkunama1/hai.leapmatedocker` gepusht.
+
+Ein **täglicher Workflow** (`docker-build-daily.yml`, täglich 03:30 Uhr UTC + manuell auslösbar) prüft, ob im Upstream ein neuer Commit vorliegt. Ist das Image dafür noch nicht gebaut, läuft ein Neu-Build und Pusht auf `latest` (+ `upstream-<sha>`-Tag).
 
 ---
 
