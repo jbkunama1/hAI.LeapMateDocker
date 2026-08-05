@@ -16,11 +16,14 @@
 
 [LeapMotor-Mate](https://github.com/ProtossBlaster/leapmotor-mate) ist ein selbst gehostetes Web-Dashboard für Leap-Motor-Fahrzeuge, das Fahrzeugdaten pollt, in einer SQLite-Datenbank speichert und über eine Web-Oberfläche zugänglich macht.
 
-Dieses Repo liefert einen fertigen **Portainer Stack** (Git-Deployment), der direkt aus dem Upstream-Repo deployed werden kann.
+Dieses Repo liefert einen fertigen **Portainer Stack** (Git-Deployment) für beide Varianten:
+
+1. **Host-Build** – baut das Image beim Deploy direkt aus dem Upstream-Repo (Standard).
+2. **GHCR-Image** – ein GitHub Actions Workflow baut das Image bei jedem Push auf `main` und pusht es auf `ghcr.io`; Portainer holt nur noch das fertige Image.
 
 ---
 
-## 🚀 Portainer Deploy (Git-Deployment)
+## 🚀 Portainer Deploy – Host-Build (Standard, unverändert)
 
 ### Voraussetzungen
 - Portainer Business oder CE ≥ 2.x
@@ -36,6 +39,27 @@ Dieses Repo liefert einen fertigen **Portainer Stack** (Git-Deployment), der dir
 6. Compose path: `docker-compose.portainer.yml`
 7. **Environment variables** setzen (siehe unten)
 8. **Deploy the stack**
+
+---
+
+## 📦 Portainer Deploy – GHCR-Image (vorgebaut)
+
+Das Image wird von GitHub Actions gebaut (`.github/workflows/docker-build.yml`) und auf `ghcr.io/jbkunama1/hai.leapmatedocker` gepusht – bei jedem Push auf `main` (multi-arch `linux/amd64` + `linux/arm64`).
+
+### Voraussetzungen
+- Portainer Business oder CE ≥ 2.x
+- **Einmalig:** GHCR-Paket als **public** setzen (GitHub → Repo → **Packages** → `hai.leapmatedocker` → **Package settings** → **Change visibility** → Public), sonst braucht Portainer Login-Credentials.
+
+### Schritte
+
+1. In Portainer → **Stacks** → **+ Add stack**
+2. Name: `leapmotor-mate`
+3. Build method: **Repository**
+4. Repository URL: `https://github.com/jbkunama1/hAI.LeapMateDocker`
+5. Repository reference: `refs/heads/main`
+6. Compose path: `docker-compose.ghcr.yml`
+7. **Environment variables** setzen (siehe unten)
+8. **Deploy the stack** – Portainer pullt das vorgebaute Image (`pull_policy: always`), kein Build auf dem Host.
 
 ---
 
@@ -59,7 +83,11 @@ Falls du eine `.env`-Datei nutzen möchtest: Kopiere `.env.example` und fülle d
 ```
 hAI.LeapMateDocker/
 ├── docker-compose.portainer.yml  ← Portainer Stack (baut Image aus Upstream-Repo)
+├── docker-compose.ghcr.yml       ← Portainer Stack (holt vorgebautes GHCR-Image)
 ├── .env.example                  ← Vorlage für Umgebungsvariablen
+├── .github/workflows/
+│   ├── docker-build.yml          ← baut & pusht Image auf ghcr.io (bei Push auf main)
+│   └── trufflehog.yml            ← täglicher Secret-Scan
 ├── docs/
 │   └── index.html                ← GitHub Pages Landingpage
 └── README.md
@@ -70,7 +98,7 @@ hAI.LeapMateDocker/
 ## 📝 Upstream
 
 Dieses Repo deployt direkt den Quellcode von [ProtossBlaster/leapmotor-mate](https://github.com/ProtossBlaster/leapmotor-mate).
-Das Image wird beim ersten Deploy vom Docker-Host gebaut (kein vorgefertigtes Image nötig).
+Das Image wird beim ersten Deploy vom Docker-Host gebaut (kein vorgefertigtes Image nötig) – oder alternativ automatisch vom GHCR-Workflow gebaut und auf `ghcr.io/jbkunama1/hai.leapmatedocker` gepusht.
 
 ---
 

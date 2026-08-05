@@ -1,0 +1,43 @@
+# ============================================================
+# Portainer Stack: LeapMotor-Mate (GHCR-Ausgabe)
+# Holt das von GitHub Actions vorgebaute Image aus ghcr.io.
+# Deploy via: Portainer > Stacks > Add Stack > Repository
+# Repo URL: https://github.com/jbkunama1/hAI.LeapMateDocker
+# Compose path: docker-compose.ghcr.yml
+# Image wird von .github/workflows/docker-build.yml gebaut.
+# ============================================================
+
+services:
+  leapmotor-mate:
+    image: ghcr.io/jbkunama1/hai.leapmatedocker:latest
+    container_name: hai-leapmotor-mate
+    pull_policy: always
+    ports:
+      - "${PORT:-4000}:4000"
+    volumes:
+      - leapmotor_data:/data
+
+    environment:
+      - LEAPMOTOR_USER=${LEAPMOTOR_USER}
+      - LEAPMOTOR_PASS=${LEAPMOTOR_PASS}
+      - LEAPMOTOR_PIN=${LEAPMOTOR_PIN}
+      - DB_PATH=${DB_PATH:-/data/leapmotor_mate.db}
+      - TZ=${TZ:-Europe/Berlin}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:4000/healthz', timeout=8)"]
+      interval: 60s
+      timeout: 10s
+      start_period: 60s
+      retries: 3
+
+    networks:
+      - highfishNetwork
+
+volumes:
+  leapmotor_data:
+    driver: local
+
+networks:
+  highfishNetwork:
+    external: true
