@@ -51,7 +51,7 @@
 <body>
 <header>
   <h1>hAI.<span>LeapMateDocker</span></h1>
-  <p>Portainer Stack &bull; Deploy direkt aus GitHub &bull; LeapMotor-Mate</p>
+    <p>Portainer Stack &bull; Deploy direkt aus GitHub &bull; LeapMotor-Mate &bull; GHCR-Image</p>
 </header>
 <div class="badges">
   <img src="https://img.shields.io/github/stars/jbkunama1/hAI.LeapMateDocker?style=flat-square&logo=github" alt="Stars" />
@@ -60,10 +60,11 @@
   <img src="https://img.shields.io/badge/Portainer-Stack-13BEF9?style=flat-square&logo=portainer" alt="Portainer" />
   <img src="https://img.shields.io/badge/License-GPL--3.0-blue.svg?style=flat-square" alt="License" />
   <img src="https://img.shields.io/badge/Upstream-ProtossBlaster%2Fleapmotor--mate-orange?style=flat-square&logo=github" alt="Upstream" />
+  <img src="https://img.shields.io/badge/GHCR-Image-1F883D?style=flat-square&logo=github" alt="GHCR" />
 </div>
 <div class="card-grid">
   <div class="card">
-    <h2><span>🚀</span> Portainer Deploy</h2>
+      <h2><span>🚀</span> Portainer Deploy – Host-Build</h2>
     <ol>
       <li>Portainer &rarr; <strong>Stacks</strong> &rarr; <strong>+ Add stack</strong></li>
       <li>Build method: <code>Repository</code></li>
@@ -75,6 +76,17 @@
     <a class="btn" href="https://github.com/jbkunama1/hAI.LeapMateDocker" target="_blank">Zum Repo</a>
     <a class="btn btn-outline" href="https://github.com/jbkunama1/hAI.LeapMateDocker/blob/main/docker-compose.portainer.yml" target="_blank">Stack YAML</a>
   </div>
+    <div class="card">
+      <h2><span>📦</span> Portainer Deploy – GHCR-Image</h2>
+      <ol>
+        <li>Compose path: <code>docker-compose.ghcr.yml</code></li>
+        <li>Image: <code>ghcr.io/jbkunama1/hai.leapmatedocker</code></li>
+        <li>Wird von GitHub Actions vorgebaut (multi-arch amd64+arm64)</li>
+        <li>Portainer pullt nur noch, kein Host-Build</li>
+      </ol>
+      <a class="btn" href="https://github.com/jbkunama1/hAI.LeapMateDocker/blob/main/docker-compose.ghcr.yml" target="_blank">Stack YAML</a>
+      <a class="btn btn-outline" href="https://github.com/jbkunama1/hAI.LeapMateDocker/pkgs/container/hai.leapmatedocker" target="_blank">GHCR Package</a>
+    </div>
   <div class="card">
     <h2><span>🔧</span> Environment Variables</h2>
     <ul>
@@ -91,6 +103,17 @@
     <h2><span>ℹ️</span> Was ist LeapMotor-Mate?</h2>
     <p>Self-hosted Web-Dashboard für Leap-Motor-Fahrzeuge. Pollt Fahrzeugdaten, speichert sie in SQLite und stellt sie über ein Web-UI bereit. Dieses Repo liefert den fertigen Docker-Stack für Portainer – kein manuelles Clonen nötig.</p>
     <a class="btn btn-outline" href="https://github.com/ProtossBlaster/leapmotor-mate" target="_blank">Upstream ↗</a>
+  </div>
+  <div class="card">
+    <h2><span>⚙️</span> GitHub Actions Build</h2>
+    <ul>
+      <li>Workflow: <code>.github/workflows/docker-build.yml</code></li>
+      <li>Bei jedem Push auf <code>main</code> &rarr; Image bauen</li>
+      <li>Push auf <code>ghcr.io/jbkunama1/hai.leapmatedocker</code></li>
+      <li>Multi-arch: <code>linux/amd64</code> + <code>linux/arm64</code></li>
+      <li>Host-Build (<code>docker-compose.portainer.yml</code>) bleibt unver&auml;ndert</li>
+    </ul>
+    <a class="btn btn-outline" href="https://github.com/jbkunama1/hAI.LeapMateDocker/blob/main/.github/workflows/docker-build.yml" target="_blank">Workflow YAML</a>
   </div>
   <div class="card">
     <h2><span>🗄️</span> Volumes &amp; Ports</h2>
