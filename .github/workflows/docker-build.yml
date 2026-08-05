@@ -1,7 +1,8 @@
 # ============================================================
 # GHCR Image Build
 # Baut das LeapMotor-Mate-Image aus dem Upstream-Repo und
-# pusht es auf ghcr.io. Läuft bei jedem Push auf main.
+# pusht es auf ghcr.io. Läuft bei jedem Push (Commit) auf
+# beliebige Branch, manuell per workflow_dispatch ausführbar.
 # Der Host-Build (docker-compose.portainer.yml) bleibt unverändert.
 # ============================================================
 
@@ -9,7 +10,6 @@ name: Build & Push Docker Image to GHCR
 
 on:
   push:
-    branches: [ main ]
   workflow_dispatch:
 
 env:
