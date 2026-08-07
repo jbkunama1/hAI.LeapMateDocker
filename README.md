@@ -1,5 +1,9 @@
 # hAI.LeapMateDocker
 
+<a href="https://www.buymeacoffee.com/highfish">
+<img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174">
+</a>
+
 [![GitHub Stars](https://img.shields.io/github/stars/jbkunama1/hAI.LeapMateDocker?style=flat-square&logo=github)](https://github.com/jbkunama1/hAI.LeapMateDocker/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/jbkunama1/hAI.LeapMateDocker?style=flat-square&logo=github)](https://github.com/jbkunama1/hAI.LeapMateDocker/network/members)
 [![GitHub Issues](https://img.shields.io/github/issues/jbkunama1/hAI.LeapMateDocker?style=flat-square)](https://github.com/jbkunama1/hAI.LeapMateDocker/issues)
@@ -108,3 +112,4 @@ Ein **täglicher Workflow** (`docker-build-daily.yml`, täglich 03:30 Uhr UTC + 
 ## 📄 Lizenz
 
 GPL-3.0 – entsprechend dem Upstream-Projekt.
+
