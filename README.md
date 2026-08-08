@@ -1,8 +1,6 @@
 # hAI.LeapMateDocker
 
-<a href="https://www.buymeacoffee.com/highfish">
-<img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174">
-</a>
+[![Buy me a coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/highfish)
 
 [![GitHub Stars](https://img.shields.io/github/stars/jbkunama1/hAI.LeapMateDocker?style=flat-square&logo=github)](https://github.com/jbkunama1/hAI.LeapMateDocker/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/jbkunama1/hAI.LeapMateDocker?style=flat-square&logo=github)](https://github.com/jbkunama1/hAI.LeapMateDocker/network/members)
