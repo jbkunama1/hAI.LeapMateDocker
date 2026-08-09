@@ -16,7 +16,6 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ lower(github.repository) }}
   UPSTREAM_REPO: ProtossBlaster/leapmotor-mate
   UPSTREAM_BRANCH: main
 
@@ -28,6 +27,9 @@ jobs:
       packages: write
 
     steps:
+      - name: Set lowercase image name
+        run: echo "IMAGE_NAME=${GITHUB_REPOSITORY,,}" >> "$GITHUB_ENV"
+
       - name: Get upstream HEAD commit
         id: upstream
         run: |
