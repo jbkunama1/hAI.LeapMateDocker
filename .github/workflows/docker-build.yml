@@ -14,7 +14,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository | lower }}
+  IMAGE_NAME: ${{ lower(github.repository) }}
   UPSTREAM_REPO: ProtossBlaster/leapmotor-mate
   UPSTREAM_REF: main
 
