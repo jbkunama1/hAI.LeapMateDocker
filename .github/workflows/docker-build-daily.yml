@@ -51,10 +51,10 @@ jobs:
         run: |
           REF="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:upstream-${{ steps.upstream.outputs.sha }}"
           if docker buildx imagetools inspect "$REF" > /dev/null 2>&1; then
-            echo "Image vorhanden ($REF)  kein Rebuild noetig."
+            echo "Image vorhanden ($REF) – kein Rebuild noetig."
             echo "build=no" >> "$GITHUB_OUTPUT"
           else
-            echo "Neuer Upstream-Stand  Rebuild noetig."
+            echo "Neuer Upstream-Stand – Rebuild noetig."
             echo "build=yes" >> "$GITHUB_OUTPUT"
           fi
 
